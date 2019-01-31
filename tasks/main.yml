@@ -1,0 +1,6 @@
+- name: Allow ovpnsa tcp
+  command: firewall-cmd --zone=public --permanent --add-port=943/tcp
+
+- name: Bounce firewalld
+  service: name=firewalld state=restarted
+  when: "'con01' not in inventory_hostname_short"
